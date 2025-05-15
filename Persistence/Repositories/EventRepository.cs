@@ -1,11 +1,15 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
 using Persistence.Entities;
+using Persistence.Interfaces;
 using Persistence.Models;
 
 namespace Persistence.Repositories;
 
-public class EventRepository(DataContext context) : BaseRepository<EventEntity>(context)
+public class EventRepository(DataContext context)
+    : BaseRepository<EventEntity>(context),
+        IEventRepository
 {
     public override async Task<RepositoryResult<IEnumerable<EventEntity>>> GetAllAsync()
     {
@@ -25,6 +29,25 @@ public class EventRepository(DataContext context) : BaseRepository<EventEntity>(
                 Success = false,
                 Error = ex.Message,
             };
+        }
+    }
+
+    public override async Task<RepositoryResult<EventEntity?>> GetAsync(
+        Expression<Func<EventEntity, bool>> expression
+    )
+    {
+        try
+        {
+            var entity = await _table.Include(x => x.Packages).FirstOrDefaultAsync(expression);
+            return new RepositoryResult<EventEntity?>
+            {
+                Success = true,
+                Result = entity ?? throw new Exception("Not found"),
+            };
+        }
+        catch (Exception ex)
+        {
+            return new RepositoryResult<EventEntity?> { Success = false, Error = ex.Message };
         }
     }
 }
