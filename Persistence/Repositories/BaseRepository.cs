@@ -17,7 +17,7 @@ public abstract class BaseRepository<TEntity>
         _table = _context.Set<TEntity>();
     }
 
-    public async Task<RepositoryResult<IEnumerable<TEntity>>> GetAllAsync()
+    public virtual async Task<RepositoryResult<IEnumerable<TEntity>>> GetAllAsync()
     {
         try
         {
@@ -34,7 +34,7 @@ public abstract class BaseRepository<TEntity>
         }
     }
 
-    public async Task<RepositoryResult<TEntity?>> GetAsync(
+    public virtual async Task<RepositoryResult<TEntity?>> GetAsync(
         Expression<Func<TEntity, bool>> expression
     )
     {
@@ -53,7 +53,7 @@ public abstract class BaseRepository<TEntity>
         }
     }
 
-    public async Task<RepositoryResult> AddAsync(TEntity entity)
+    public virtual async Task<RepositoryResult> AddAsync(TEntity entity)
     {
         try
         {
@@ -67,7 +67,7 @@ public abstract class BaseRepository<TEntity>
         }
     }
 
-    public async Task<RepositoryResult> UpdateAsync(TEntity entity)
+    public virtual async Task<RepositoryResult> UpdateAsync(TEntity entity)
     {
         try
         {
@@ -81,7 +81,7 @@ public abstract class BaseRepository<TEntity>
         }
     }
 
-    public async Task<RepositoryResult> DeleteAsync(TEntity entity)
+    public virtual async Task<RepositoryResult> DeleteAsync(TEntity entity)
     {
         try
         {
@@ -93,5 +93,15 @@ public abstract class BaseRepository<TEntity>
         {
             return new RepositoryResult { Success = false, Error = ex.Message };
         }
+    }
+
+    public virtual async Task<RepositoryResult> AlreadyExistsAsync(
+        Expression<Func<TEntity, bool>> expression
+    )
+    {
+        var result = await _table.AnyAsync(expression);
+        return result
+            ? new RepositoryResult { Success = true }
+            : new RepositoryResult { Success = false };
     }
 }
