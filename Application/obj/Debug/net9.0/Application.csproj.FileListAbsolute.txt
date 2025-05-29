@@ -10,3 +10,4 @@ C:\Users\kimha\RiderProjects\Ventixe\EventService\Application\obj\Debug\net9.0\A
 C:\Users\kimha\RiderProjects\Ventixe\EventService\Application\obj\Debug\net9.0\refint\Application.dll
 C:\Users\kimha\RiderProjects\Ventixe\EventService\Application\obj\Debug\net9.0\Application.pdb
 C:\Users\kimha\RiderProjects\Ventixe\EventService\Application\obj\Debug\net9.0\ref\Application.dll
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Application\obj\Debug\net9.0\Application.sourcelink.json

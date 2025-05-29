@@ -25,6 +25,6 @@ public class EventDto
 
     // Formatted properties for frontend consumption
     public string FormattedDate => StartDate.ToString("MMM dd, yyyy");
-    public string FormattedTime => StartTime.ToString(@"h\:mm\ tt");
+    public string FormattedTime => DateTime.Today.Add(StartTime).ToString("h:mm tt");
     public string FormattedDateAndTime => $"{FormattedDate} - {FormattedTime}";
 }

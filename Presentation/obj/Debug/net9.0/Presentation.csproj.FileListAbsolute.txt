@@ -154,3 +154,10 @@ C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\obj\Debug\net9.0\
 C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\obj\Debug\net9.0\Presentation.pdb
 C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\obj\Debug\net9.0\Presentation.genruntimeconfig.cache
 C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\obj\Debug\net9.0\ref\Presentation.dll
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\bin\Debug\net9.0\publish\web.config
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\bin\Debug\net9.0\publish\appsettings.Development.json
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\bin\Debug\net9.0\publish\appsettings.json
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\bin\Debug\net9.0\publish\Presentation.deps.json
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\bin\Debug\net9.0\publish\Presentation.runtimeconfig.json
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\bin\Debug\net9.0\publish\Presentation.staticwebassets.endpoints.json
+C:\Users\kimha\RiderProjects\Ventixe\EventService\Presentation\obj\Debug\net9.0\Presentation.sourcelink.json

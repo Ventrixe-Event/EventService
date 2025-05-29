@@ -160,6 +160,84 @@ public class EventService : IEventService
             UpdatedAt = DateTime.UtcNow.AddDays(-1),
             IsActive = true,
         },
+        // Draft Events
+        new EventDto
+        {
+            Id = "9",
+            Title = "Digital Marketing Conference",
+            Description = "Learn the latest digital marketing strategies and trends",
+            Category = "Business",
+            Location = "Marketing Hub, Austin, TX",
+            StartDate = new DateTime(2026, 7, 10),
+            StartTime = new TimeSpan(9, 0, 0), // 9:00 AM
+            Price = 120m,
+            Status = "Draft",
+            Progress = 15,
+            MaxAttendees = 200,
+            CurrentAttendees = 0,
+            OrganizerName = "Digital Growth Agency",
+            CreatedAt = DateTime.UtcNow.AddDays(-5),
+            UpdatedAt = DateTime.UtcNow.AddDays(-1),
+            IsActive = true,
+        },
+        new EventDto
+        {
+            Id = "10",
+            Title = "Photography Workshop",
+            Description = "Master the art of landscape photography",
+            Category = "Art & Design",
+            Location = "Mountain View Studio, Colorado",
+            StartDate = new DateTime(2026, 8, 15),
+            StartTime = new TimeSpan(8, 0, 0), // 8:00 AM
+            Price = 85m,
+            Status = "Draft",
+            Progress = 25,
+            MaxAttendees = 50,
+            CurrentAttendees = 0,
+            OrganizerName = "Photo Masters Academy",
+            CreatedAt = DateTime.UtcNow.AddDays(-3),
+            UpdatedAt = DateTime.UtcNow,
+            IsActive = true,
+        },
+        // Past Events
+        new EventDto
+        {
+            Id = "11",
+            Title = "Winter Film Festival",
+            Description = "Independent films from around the world",
+            Category = "Entertainment",
+            Location = "Cinema District, Portland, OR",
+            StartDate = new DateTime(2024, 12, 15),
+            StartTime = new TimeSpan(18, 0, 0), // 6:00 PM
+            Price = 35m,
+            Status = "Past",
+            Progress = 100,
+            MaxAttendees = 300,
+            CurrentAttendees = 285,
+            OrganizerName = "Portland Film Society",
+            CreatedAt = DateTime.UtcNow.AddDays(-180),
+            UpdatedAt = DateTime.UtcNow.AddDays(-90),
+            IsActive = false,
+        },
+        new EventDto
+        {
+            Id = "12",
+            Title = "Holiday Market 2024",
+            Description = "Local artisans and holiday gifts",
+            Category = "Shopping",
+            Location = "Town Square, Burlington, VT",
+            StartDate = new DateTime(2024, 12, 20),
+            StartTime = new TimeSpan(10, 0, 0), // 10:00 AM
+            Price = 0m,
+            Status = "Past",
+            Progress = 100,
+            MaxAttendees = 1000,
+            CurrentAttendees = 950,
+            OrganizerName = "Burlington Chamber of Commerce",
+            CreatedAt = DateTime.UtcNow.AddDays(-200),
+            UpdatedAt = DateTime.UtcNow.AddDays(-100),
+            IsActive = false,
+        },
     };
 
     public async Task<EventResult<List<EventDto>>> GetEventsAsync()
