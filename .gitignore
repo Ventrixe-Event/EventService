@@ -1,0 +1,56 @@
+# .NET build outputs
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider/JetBrains IDE files
+.idea/
+*.sln.iml
+
+# Visual Studio files
+.vs/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET specific
+wwwroot/lib/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# OS-specific
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# User secrets
+secrets.json
+
+# Environment settings
+.env
+*.env
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Rider caches
+.idea/
+.vscode/
+
+# Other IDE-specific folders
+*.code-workspace
