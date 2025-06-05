@@ -1,11 +1,63 @@
+/*
+ * Event Service Implementation - Business Logic Layer (EventService.cs)
+ * ====================================================================
+ *
+ * This service implements the core business logic for event management
+ * in the Ventixe platform. It provides a mock data implementation for
+ * development and demonstration purposes.
+ *
+ * Service Features:
+ * - Complete CRUD operations for event management
+ * - Advanced querying (filtering, searching) capabilities
+ * - Mock data implementation with realistic event scenarios
+ * - Consistent error handling using the Result pattern
+ * - Asynchronous operations for scalability
+ *
+ * Mock Data:
+ * - Contains 10+ realistic events across different categories
+ * - Includes both "Active" and "Draft" status events
+ * - Demonstrates various event types, prices, and venues
+ * - Provides sample data for frontend development and testing
+ *
+ * Implementation Notes:
+ * - Currently uses in-memory mock data (List<EventDto>)
+ * - Ready for migration to database-backed implementation
+ * - Maintains entity-to-DTO mapping for clean separation
+ * - Follows async/await patterns for future database integration
+ *
+ * Development Notes:
+ * - AI assistance provided by Claude 4 (Anthropic) for service architecture,
+ *   mock data creation, business logic implementation, and error handling
+ * - Designed to be easily replaced with database repository implementation
+ * - Uses LINQ for data querying and filtering operations
+ *
+ * Author: Kim Hammerstad (with AI assistance from Claude 4)
+ * Created: 2024
+ */
+
 using Application.Interfaces;
 using Application.Models;
 
 namespace Application.Services;
 
+/// <summary>
+/// Implementation of event management business logic with mock data.
+/// Provides comprehensive event operations including CRUD, filtering, and search capabilities.
+/// Currently uses in-memory data store for development and demonstration purposes.
+/// </summary>
 public class EventService : IEventService
 {
-    // Mock data based on the events shown in the user's frontend
+    /// <summary>
+    /// Mock data collection representing events in the system.
+    /// Contains realistic event data for development and demonstration purposes.
+    /// Based on the events displayed in the Ventixe frontend application.
+    ///
+    /// Data includes:
+    /// - Active events across multiple categories (Music, Fashion, Technology, etc.)
+    /// - Draft events for workflow demonstration
+    /// - Realistic pricing, capacity, and location information
+    /// - Various progress states and attendee counts
+    /// </summary>
     private readonly List<EventDto> _mockEvents = new()
     {
         new EventDto
@@ -240,11 +292,16 @@ public class EventService : IEventService
         },
     };
 
+    /// <summary>
+    /// Retrieves all events from the mock data store.
+    /// Returns both active and draft events for comprehensive event management.
+    /// </summary>
+    /// <returns>EventResult containing the complete list of events</returns>
     public async Task<EventResult<List<EventDto>>> GetEventsAsync()
     {
         try
         {
-            await Task.Delay(100); // Simulate async operation
+            await Task.Delay(100); // Simulate async database operation
             return EventResult<List<EventDto>>.SuccessResult(_mockEvents);
         }
         catch (Exception ex)
@@ -253,11 +310,17 @@ public class EventService : IEventService
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific event by its unique identifier.
+    /// Used for detailed event views and editing operations.
+    /// </summary>
+    /// <param name="id">The unique event identifier to search for</param>
+    /// <returns>EventResult containing the requested event or error if not found</returns>
     public async Task<EventResult<EventDto>> GetEventAsync(string id)
     {
         try
         {
-            await Task.Delay(50); // Simulate async operation
+            await Task.Delay(50); // Simulate async database operation
             var eventItem = _mockEvents.FirstOrDefault(e => e.Id == id);
 
             if (eventItem == null)
@@ -273,11 +336,17 @@ public class EventService : IEventService
         }
     }
 
+    /// <summary>
+    /// Retrieves all events belonging to a specific category.
+    /// Performs case-insensitive matching for better user experience.
+    /// </summary>
+    /// <param name="category">The category name to filter by (case-insensitive)</param>
+    /// <returns>EventResult containing a list of events in the specified category</returns>
     public async Task<EventResult<List<EventDto>>> GetEventsByCategoryAsync(string category)
     {
         try
         {
-            await Task.Delay(100); // Simulate async operation
+            await Task.Delay(100); // Simulate async database operation
             var events = _mockEvents
                 .Where(e => e.Category.Equals(category, StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -290,11 +359,17 @@ public class EventService : IEventService
         }
     }
 
+    /// <summary>
+    /// Retrieves all events with a specific status.
+    /// Performs case-insensitive matching for status values (e.g., "Active", "Draft", "Past").
+    /// </summary>
+    /// <param name="status">The status to filter by (case-insensitive)</param>
+    /// <returns>EventResult containing a list of events with the specified status</returns>
     public async Task<EventResult<List<EventDto>>> GetEventsByStatusAsync(string status)
     {
         try
         {
-            await Task.Delay(100); // Simulate async operation
+            await Task.Delay(100); // Simulate async database operation
             var events = _mockEvents
                 .Where(e => e.Status.Equals(status, StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -307,11 +382,17 @@ public class EventService : IEventService
         }
     }
 
+    /// <summary>
+    /// Searches for events based on a text query across multiple fields.
+    /// Performs case-insensitive search across title, description, category, and location.
+    /// </summary>
+    /// <param name="searchTerm">The text to search for in event data</param>
+    /// <returns>EventResult containing a list of events matching the search criteria</returns>
     public async Task<EventResult<List<EventDto>>> SearchEventsAsync(string searchTerm)
     {
         try
         {
-            await Task.Delay(100); // Simulate async operation
+            await Task.Delay(100); // Simulate async database operation
             var events = _mockEvents
                 .Where(e =>
                     e.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
@@ -329,11 +410,17 @@ public class EventService : IEventService
         }
     }
 
+    /// <summary>
+    /// Creates a new event with the provided information.
+    /// Generates a unique ID and sets default values for status and timestamps.
+    /// </summary>
+    /// <param name="request">The event creation request containing all event details</param>
+    /// <returns>EventResult containing the newly created event or validation errors</returns>
     public async Task<EventResult<EventDto>> CreateEventAsync(CreateEventRequest request)
     {
         try
         {
-            await Task.Delay(200); // Simulate async operation
+            await Task.Delay(200); // Simulate async database operation
 
             var newEvent = new EventDto
             {
@@ -368,11 +455,18 @@ public class EventService : IEventService
         }
     }
 
+    /// <summary>
+    /// Updates an existing event with new information.
+    /// Preserves the original creation timestamp while updating the modification timestamp.
+    /// </summary>
+    /// <param name="id">The unique identifier of the event to update</param>
+    /// <param name="request">The updated event information</param>
+    /// <returns>EventResult containing the updated event or error if not found</returns>
     public async Task<EventResult<EventDto>> UpdateEventAsync(string id, CreateEventRequest request)
     {
         try
         {
-            await Task.Delay(200); // Simulate async operation
+            await Task.Delay(200); // Simulate async database operation
 
             var existingEvent = _mockEvents.FirstOrDefault(e => e.Id == id);
             if (existingEvent == null)
@@ -404,11 +498,17 @@ public class EventService : IEventService
         }
     }
 
+    /// <summary>
+    /// Removes an event from the system.
+    /// Performs hard delete on mock data (in database implementation, this would use soft delete).
+    /// </summary>
+    /// <param name="id">The unique identifier of the event to delete</param>
+    /// <returns>EventResult indicating success or failure of the deletion operation</returns>
     public async Task<EventResult<bool>> DeleteEventAsync(string id)
     {
         try
         {
-            await Task.Delay(100); // Simulate async operation
+            await Task.Delay(100); // Simulate async database operation
 
             var eventItem = _mockEvents.FirstOrDefault(e => e.Id == id);
             if (eventItem == null)
@@ -416,6 +516,7 @@ public class EventService : IEventService
                 return EventResult<bool>.FailureResult("Event not found");
             }
 
+            // In a real database implementation, this would be a soft delete (IsActive = false)
             _mockEvents.Remove(eventItem);
             return EventResult<bool>.SuccessResult(true, "Event deleted successfully");
         }
